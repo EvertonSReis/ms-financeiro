@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ContaEntradaDtos {
+public class ContaEntradaDTO {
 
     private Loja loja;
 

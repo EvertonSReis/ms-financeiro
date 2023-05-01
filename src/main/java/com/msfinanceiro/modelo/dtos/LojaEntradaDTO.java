@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LojaRetornoDtos {
-
-    private Long idLoja;
+public class LojaEntradaDTO {
 
     private String nomeLoja;
 

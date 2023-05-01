@@ -15,11 +15,11 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ContaRetornoDtos {
+public class ContaRetornoDTO {
 
     private Long idConta;
 
-    private Loja loja;
+    private LojaRetornoDTO loja;
 
     private BigDecimal valorDeCompra;
 
