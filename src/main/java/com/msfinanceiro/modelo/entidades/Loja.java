@@ -22,7 +22,4 @@ public class Loja {
     private String nomeLoja;
 
     private String cpfCnpj;
-
-    @OneToOne
-    private Conta conta;
 }

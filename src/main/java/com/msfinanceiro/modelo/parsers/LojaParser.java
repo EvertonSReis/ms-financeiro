@@ -1,10 +1,7 @@
 package com.msfinanceiro.modelo.parsers;
 
-import com.msfinanceiro.modelo.dtos.ContaEntradaDTO;
-import com.msfinanceiro.modelo.dtos.ContaRetornoDTO;
 import com.msfinanceiro.modelo.dtos.LojaEntradaDTO;
 import com.msfinanceiro.modelo.dtos.LojaRetornoDTO;
-import com.msfinanceiro.modelo.entidades.Conta;
 import com.msfinanceiro.modelo.entidades.Loja;
 import org.springframework.stereotype.Component;
 
@@ -14,11 +11,16 @@ public class LojaParser {
 
     public Loja parserLojaEntradaDTO(LojaEntradaDTO lojaEntradaDTO) {
         return Loja.builder()
+                .nomeLoja(lojaEntradaDTO.getNomeLoja())
+                .cpfCnpj(lojaEntradaDTO.getCpfCnpj())
                 .build();
     }
 
-    public LojaRetornoDTO builderRetornoLoja(Loja cotna){
+    public LojaRetornoDTO builderRetornoLoja(Loja loja){
         return LojaRetornoDTO.builder()
+                .idLoja(loja.getIdLoja())
+                .nomeLoja(loja.getNomeLoja())
+                .cpfCnpj(loja.getCpfCnpj())
                 .build();
     }
 }

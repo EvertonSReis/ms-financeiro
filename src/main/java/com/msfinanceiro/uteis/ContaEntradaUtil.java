@@ -2,7 +2,9 @@ package com.msfinanceiro.uteis;
 
 import com.msfinanceiro.modelo.dtos.ContaEntradaDTO;
 import com.msfinanceiro.modelo.entidades.Conta;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ContaEntradaUtil {
 
     public Conta verificarDTONull(ContaEntradaDTO contaEntradaDTO, Conta conta){
