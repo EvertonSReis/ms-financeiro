@@ -29,8 +29,10 @@ public class LojaServico {
     }
 
     private void validarLojaExiste(LojaEntradaDTO lojaEntradaDTO){
-        Optional<Loja> loja = lojaRepository.findByNomeLoja(lojaEntradaDTO.getNomeLoja());//TODO inserir validação
+        Optional<Loja> nomeloja = lojaRepository.findByNomeLoja(lojaEntradaDTO.getNomeLoja());
 
-        if(loja.isPresent()){throw new LojaException("Loja informada já foi cadastrada");}
+        Optional<Loja> cpfCnpj = lojaRepository.findByCpfCnpj(lojaEntradaDTO.getCpfCnpj());
+
+        if(nomeloja.isPresent() || cpfCnpj.isPresent()){throw new LojaException("Loja informada já foi cadastrada");}
     }
 }

@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface LojaRepository extends JpaRepository<Loja, Long> {
 
     Optional<Loja> findByNomeLoja(String nomeLoja);
+
+    Optional<Loja> findByCpfCnpj(String cpfCnpj);
 }
