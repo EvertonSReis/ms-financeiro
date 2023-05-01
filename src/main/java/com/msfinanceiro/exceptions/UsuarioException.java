@@ -1,13 +1,12 @@
 package com.msfinanceiro.exceptions;
 
-import com.msfinanceiro.modelo.entidades.Loja;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.BAD_REQUEST)
-public class LojaException extends FinanceiroException{
+public class UsuarioException extends FinanceiroException{
 
-    public LojaException(String msg){
+    public UsuarioException(String msg){
         super(msg);
     }
 }

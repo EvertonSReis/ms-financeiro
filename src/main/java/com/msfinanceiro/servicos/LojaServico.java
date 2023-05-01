@@ -6,11 +6,13 @@ import com.msfinanceiro.modelo.dtos.LojaRetornoDTO;
 import com.msfinanceiro.modelo.entidades.Loja;
 import com.msfinanceiro.modelo.parsers.LojaParser;
 import com.msfinanceiro.repositorios.LojaRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class LojaServico {
 
