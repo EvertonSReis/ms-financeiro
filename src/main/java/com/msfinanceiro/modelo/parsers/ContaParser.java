@@ -7,6 +7,9 @@ import com.msfinanceiro.modelo.entidades.Conta;
 import com.msfinanceiro.modelo.entidades.Loja;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class ContaParser {
 
@@ -38,6 +41,25 @@ public class ContaParser {
                 .status(conta.getStatus())
                 .loja(builderContaParaLojaRetorno(conta))
                 .build();
+    }
+
+    public List<ContaRetornoDTO> builderListaContaRetorno(List<Conta> contas) {
+        List<ContaRetornoDTO> contaRetornoDTOS = new ArrayList<>();
+        contas.forEach(conta -> contaRetornoDTOS.add(
+                ContaRetornoDTO.builder()
+                        .idConta(conta.getIdConta())
+                        .valorDeCompra(conta.getValorDeCompra())
+                        .valorParcela(conta.getValorParcela())
+                        .numeroParcela(conta.getNumeroParcela())
+                        .totalParcela(conta.getTotalParcela())
+                        .dtEmissao(conta.getDtEmissao())
+                        .dtVencimento(conta.getDtVencimento())
+                        .formaPagamento(conta.getFormaPagamento())
+                        .status(conta.getStatus())
+                        .loja(builderContaParaLojaRetorno(conta))
+                        .build()));
+
+        return contaRetornoDTOS;
     }
 
     private LojaRetornoDTO builderContaParaLojaRetorno(Conta conta){

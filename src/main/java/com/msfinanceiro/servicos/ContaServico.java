@@ -11,6 +11,8 @@ import com.msfinanceiro.uteis.ContaEntradaUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ContaServico {
 
@@ -42,5 +44,21 @@ public class ContaServico {
 
         return contaParser.builderRetornoConta(
                     contaRepository.save(retornoConta));
+    }
+
+    public void deletar(Long idConta) {
+
+        Conta conta =
+                contaRepository.findById(idConta)
+                        .orElseThrow();//TODO verificar exception
+
+        contaRepository.delete(conta);
+    }
+
+    public List<ContaRetornoDTO> retornarTodasContas() {
+
+        List<Conta> contas = contaRepository.findAll();
+
+        return contaParser.builderListaContaRetorno(contas);
     }
 }

@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/conta", produces = "application/json")
 public class ContaController {
@@ -28,5 +30,21 @@ public class ContaController {
         ContaRetornoDTO conta = contaServico.atualizar(contaEntradaDTO, idConta);
 
         return new ResponseEntity<>(conta, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/deletar/{idConta}")
+    public ResponseEntity<?> deletar(@PathVariable("idConta") Long idConta){
+
+        contaServico.deletar(idConta);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/todas-as-contas")
+    public ResponseEntity<?> retornarTodasContas(){
+
+        List<ContaRetornoDTO> contas = contaServico.retornarTodasContas();
+
+        return new ResponseEntity<>(contas, HttpStatus.OK);
     }
 }
