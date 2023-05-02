@@ -1,8 +1,8 @@
 package com.msfinanceiro.modelo.dtos;
 
-import com.msfinanceiro.modelo.entidades.Loja;
 import com.msfinanceiro.modelo.enums.EFormaPagamento;
 import com.msfinanceiro.modelo.enums.EStatus;
+import com.msfinanceiro.modelo.enums.ETipoConta;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,6 +18,8 @@ import java.time.LocalDate;
 public class ContaRetornoDTO {
 
     private Long idConta;
+
+    private ETipoConta tipoConta;
 
     private LojaRetornoDTO loja;
 

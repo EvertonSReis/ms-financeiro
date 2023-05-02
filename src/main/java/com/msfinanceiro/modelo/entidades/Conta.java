@@ -2,6 +2,7 @@ package com.msfinanceiro.modelo.entidades;
 
 import com.msfinanceiro.modelo.enums.EFormaPagamento;
 import com.msfinanceiro.modelo.enums.EStatus;
+import com.msfinanceiro.modelo.enums.ETipoConta;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,6 +24,8 @@ public class Conta {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "conta_sequence")
     @SequenceGenerator(name="conta_sequence", sequenceName = "conta_seq")
     private Long idConta;
+
+    private ETipoConta tipoConta;
 
     @OneToOne(fetch = FetchType.LAZY)
     private Loja loja;

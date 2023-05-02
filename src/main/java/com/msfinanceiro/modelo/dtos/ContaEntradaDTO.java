@@ -3,6 +3,7 @@ package com.msfinanceiro.modelo.dtos;
 import com.msfinanceiro.modelo.entidades.Loja;
 import com.msfinanceiro.modelo.enums.EFormaPagamento;
 import com.msfinanceiro.modelo.enums.EStatus;
+import com.msfinanceiro.modelo.enums.ETipoConta;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,6 +17,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ContaEntradaDTO {
+
+    private ETipoConta tipoConta;
 
     private Loja loja;
 

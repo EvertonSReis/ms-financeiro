@@ -16,6 +16,7 @@ public class ContaParser {
 
     public Conta parserContaEntradaDTO(ContaEntradaDTO contaEntradaDTO, Loja loja) {
         return Conta.builder()
+                .tipoConta(contaEntradaDTO.getTipoConta())
                 .valorDeCompra(contaEntradaDTO.getValorDeCompra())
                 .valorParcela(contaEntradaDTO.getValorParcela())
                 .numeroParcela(contaEntradaDTO.getNumeroParcela())
@@ -31,6 +32,7 @@ public class ContaParser {
     public ContaRetornoDTO builderRetornoConta(Conta conta){
         return ContaRetornoDTO.builder()
                 .idConta(conta.getIdConta())
+                .tipoConta(conta.getTipoConta())
                 .valorDeCompra(conta.getValorDeCompra())
                 .valorParcela(conta.getValorParcela())
                 .numeroParcela(conta.getNumeroParcela())
@@ -48,6 +50,7 @@ public class ContaParser {
         contas.forEach(conta -> contaRetornoDTOS.add(
                 ContaRetornoDTO.builder()
                         .idConta(conta.getIdConta())
+                        .tipoConta(conta.getTipoConta())
                         .valorDeCompra(conta.getValorDeCompra())
                         .valorParcela(conta.getValorParcela())
                         .numeroParcela(conta.getNumeroParcela())
