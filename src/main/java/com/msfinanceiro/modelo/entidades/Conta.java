@@ -8,9 +8,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Builder
 @Data
@@ -21,9 +23,10 @@ import java.time.LocalDate;
 public class Conta {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "conta_sequence")
-    @SequenceGenerator(name="conta_sequence", sequenceName = "conta_seq")
-    private Long idConta;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "id_conta", updatable = false, nullable = false)
+    private UUID idConta;
 
     private ETipoConta tipoConta;
 
@@ -45,5 +48,4 @@ public class Conta {
     private EFormaPagamento formaPagamento;
 
     private EStatus status;
-
 }

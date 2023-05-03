@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Builder
 @Data
@@ -17,7 +18,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ContaRetornoDTO {
 
-    private Long idConta;
+    private UUID idConta;
 
     private ETipoConta tipoConta;
 

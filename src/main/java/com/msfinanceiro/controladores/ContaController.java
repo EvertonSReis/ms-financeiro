@@ -19,7 +19,7 @@ public class ContaController {
     @PostMapping("/cadastrar")
     public ResponseEntity<?> salvar(@RequestBody ContaEntradaDTO contaEntradaDTO){
 
-        ContaRetornoDTO conta = contaServico.salvar(contaEntradaDTO);
+        List<ContaRetornoDTO> conta = contaServico.salvar(contaEntradaDTO);
 
         return new ResponseEntity<>(conta, HttpStatus.OK);
     }

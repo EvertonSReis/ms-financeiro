@@ -11,6 +11,8 @@ import com.msfinanceiro.uteis.ContaEntradaUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,17 +23,25 @@ public class ContaServico {
     @Autowired ContaParser contaParser;
     @Autowired ContaEntradaUtil contaEntradaUtil;
 
-    public ContaRetornoDTO salvar(ContaEntradaDTO contaEntradaDTO){
+    public List<ContaRetornoDTO> salvar(ContaEntradaDTO contaEntradaDTO){
 
         Loja loja =
                 lojaRepository.findByNomeLoja(contaEntradaDTO.getLoja().getNomeLoja())
                         .orElseThrow(); //TODO criar validação.
 
-        Conta conta =
-                contaRepository.save(
-                        contaParser.parserContaEntradaDTO(contaEntradaDTO, loja));
+        List<Conta> contas = new ArrayList<>();
+        for(int i=1; i<= contaEntradaDTO.getTotalParcela(); i++){
+            LocalDate dataVencimento = contaEntradaDTO.getDtEmissao().plusMonths(i);
 
-        return contaParser.builderRetornoConta(conta);
+            contaEntradaDTO.setNumeroParcela(i);
+            contaEntradaDTO.setDtVencimento(dataVencimento);
+            Conta conta =
+                    contaRepository.save(
+                            contaParser.parserContaEntradaDTO(contaEntradaDTO, loja));
+            contas.add(conta);
+        }
+
+        return contaParser.builderListaContaRetorno(contas);
     }
 
     public ContaRetornoDTO atualizar(ContaEntradaDTO contaEntradaDTO, Long idConta) {
