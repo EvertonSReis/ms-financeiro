@@ -5,6 +5,9 @@ import com.msfinanceiro.modelo.dtos.ContaRetornoDTO;
 import com.msfinanceiro.modelo.dtos.LojaRetornoDTO;
 import com.msfinanceiro.modelo.entidades.Conta;
 import com.msfinanceiro.modelo.entidades.Loja;
+import com.msfinanceiro.modelo.enums.EFormaPagamento;
+import com.msfinanceiro.modelo.enums.EStatus;
+import com.msfinanceiro.modelo.enums.ETipoConta;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -16,15 +19,16 @@ public class ContaParser {
 
     public Conta parserContaEntradaDTO(ContaEntradaDTO contaEntradaDTO, Loja loja) {
         return Conta.builder()
-                .tipoConta(contaEntradaDTO.getTipoConta())
+                .numeroConta(contaEntradaDTO.getNumeroPedido())
+                .tipoConta(ETipoConta.valueOf(contaEntradaDTO.getTipoConta()))
                 .valorDeCompra(contaEntradaDTO.getValorDeCompra())
                 .valorParcela(contaEntradaDTO.getValorParcela())
                 .numeroParcela(contaEntradaDTO.getNumeroParcela())
                 .totalParcela(contaEntradaDTO.getTotalParcela())
                 .dtEmissao(contaEntradaDTO.getDtEmissao())
                 .dtVencimento(contaEntradaDTO.getDtVencimento())
-                .formaPagamento(contaEntradaDTO.getFormaPagamento())
-                .status(contaEntradaDTO.getStatus())
+                .formaPagamento(EFormaPagamento.valueOf(contaEntradaDTO.getFormaPagamento()))
+                .status(EStatus.valueOf(contaEntradaDTO.getStatus()))
                 .loja(loja)
                 .build();
     }
@@ -32,15 +36,16 @@ public class ContaParser {
     public ContaRetornoDTO builderRetornoConta(Conta conta){
         return ContaRetornoDTO.builder()
                 .idConta(conta.getIdConta())
-                .tipoConta(conta.getTipoConta())
+                .numeroConta(conta.getNumeroConta())
+                .tipoConta(conta.getTipoConta().getNome())
                 .valorDeCompra(conta.getValorDeCompra())
                 .valorParcela(conta.getValorParcela())
                 .numeroParcela(conta.getNumeroParcela())
                 .totalParcela(conta.getTotalParcela())
                 .dtEmissao(conta.getDtEmissao())
                 .dtVencimento(conta.getDtVencimento())
-                .formaPagamento(conta.getFormaPagamento())
-                .status(conta.getStatus())
+                .formaPagamento(conta.getFormaPagamento().getNome())
+                .status(conta.getStatus().getNome())
                 .loja(builderContaParaLojaRetorno(conta))
                 .build();
     }
@@ -50,15 +55,16 @@ public class ContaParser {
         contas.forEach(conta -> contaRetornoDTOS.add(
                 ContaRetornoDTO.builder()
                         .idConta(conta.getIdConta())
-                        .tipoConta(conta.getTipoConta())
+                        .numeroConta(conta.getNumeroConta())
+                        .tipoConta(conta.getTipoConta().getNome())
                         .valorDeCompra(conta.getValorDeCompra())
                         .valorParcela(conta.getValorParcela())
                         .numeroParcela(conta.getNumeroParcela())
                         .totalParcela(conta.getTotalParcela())
                         .dtEmissao(conta.getDtEmissao())
                         .dtVencimento(conta.getDtVencimento())
-                        .formaPagamento(conta.getFormaPagamento())
-                        .status(conta.getStatus())
+                        .formaPagamento(conta.getFormaPagamento().getNome())
+                        .status(conta.getStatus().getNome())
                         .loja(builderContaParaLojaRetorno(conta))
                         .build()));
 

@@ -2,6 +2,8 @@ package com.msfinanceiro.uteis;
 
 import com.msfinanceiro.modelo.dtos.ContaEntradaDTO;
 import com.msfinanceiro.modelo.entidades.Conta;
+import com.msfinanceiro.modelo.enums.EFormaPagamento;
+import com.msfinanceiro.modelo.enums.EStatus;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,8 +16,8 @@ public class ContaEntradaUtil {
         if(contaEntradaDTO.getTotalParcela() != null) conta.setTotalParcela(contaEntradaDTO.getTotalParcela());
         if(contaEntradaDTO.getDtEmissao() != null) conta.setDtEmissao(contaEntradaDTO.getDtEmissao());
         if(contaEntradaDTO.getDtVencimento() != null) conta.setDtVencimento(contaEntradaDTO.getDtVencimento());
-        if(contaEntradaDTO.getFormaPagamento() != null) conta.setFormaPagamento(contaEntradaDTO.getFormaPagamento());
-        if(contaEntradaDTO.getStatus() != null) conta.setStatus(contaEntradaDTO.getStatus());
+        if(contaEntradaDTO.getFormaPagamento() != null) conta.setFormaPagamento(EFormaPagamento.valueOf(contaEntradaDTO.getFormaPagamento()));
+        if(contaEntradaDTO.getStatus() != null) conta.setStatus(EStatus.valueOf(contaEntradaDTO.getStatus()));
         if(contaEntradaDTO.getLoja() != null) conta.setLoja(contaEntradaDTO.getLoja());
 
     return conta;

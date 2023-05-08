@@ -28,6 +28,8 @@ public class Conta {
     @Column(name = "id_conta", updatable = false, nullable = false)
     private UUID idConta;
 
+    private Integer numeroConta;
+
     private ETipoConta tipoConta;
 
     @OneToOne(fetch = FetchType.LAZY)

@@ -29,12 +29,15 @@ public class ContaServico {
                 lojaRepository.findByNomeLoja(contaEntradaDTO.getLoja().getNomeLoja())
                         .orElseThrow(); //TODO criar validação.
 
+        Integer numeroPedido = numeroUltimoPedido();
+
         List<Conta> contas = new ArrayList<>();
         for(int i=1; i<= contaEntradaDTO.getTotalParcela(); i++){
             LocalDate dataVencimento = contaEntradaDTO.getDtEmissao().plusMonths(i);
 
             contaEntradaDTO.setNumeroParcela(i);
             contaEntradaDTO.setDtVencimento(dataVencimento);
+            contaEntradaDTO.setNumeroPedido(numeroPedido);
             Conta conta =
                     contaRepository.save(
                             contaParser.parserContaEntradaDTO(contaEntradaDTO, loja));
@@ -56,11 +59,10 @@ public class ContaServico {
                     contaRepository.save(retornoConta));
     }
 
-    public void deletar(Long idConta) {
+    public void deletar(Long numeroConta, Long numeroParcela) {
 
         Conta conta =
-                contaRepository.findById(idConta)
-                        .orElseThrow();//TODO verificar exception
+                contaRepository.selectContaPorNumeroContaENumeroParcela(numeroConta, numeroParcela).orElseThrow();
 
         contaRepository.delete(conta);
     }
@@ -70,5 +72,15 @@ public class ContaServico {
         List<Conta> contas = contaRepository.findAll();
 
         return contaParser.builderListaContaRetorno(contas);
+    }
+
+    private Integer numeroUltimoPedido(){
+        Integer i = contaRepository.numeroUltimoConta();
+
+        if(i == null){
+            i = 1;
+        }
+
+        return i + 1;
     }
 }

@@ -26,8 +26,9 @@ public class WebConfig {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests((auth) -> {
             try {
-                auth.requestMatchers("/usuario/cadastrar").permitAll()
-                        .requestMatchers("/usuario/auth").permitAll()
+                auth.requestMatchers("/usuario/cadastrar",
+                                "/usuario/auth")
+                        .permitAll()
                         .anyRequest()
                         .authenticated()
                         .and()

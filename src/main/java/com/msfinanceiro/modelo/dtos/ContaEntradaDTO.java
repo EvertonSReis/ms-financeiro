@@ -18,7 +18,9 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ContaEntradaDTO {
 
-    private ETipoConta tipoConta;
+    private Integer numeroPedido;
+
+    private String tipoConta;
 
     private Loja loja;
 
@@ -34,7 +36,7 @@ public class ContaEntradaDTO {
 
     private LocalDate dtVencimento;
 
-    private EFormaPagamento formaPagamento;
+    private String formaPagamento;
 
-    private EStatus status;
+    private String status;
 }

@@ -17,7 +17,7 @@ public class ContaController {
     @Autowired ContaServico contaServico;
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<?> salvar(@RequestBody ContaEntradaDTO contaEntradaDTO){
+    public ResponseEntity<List<ContaRetornoDTO>> salvar(@RequestBody ContaEntradaDTO contaEntradaDTO){
 
         List<ContaRetornoDTO> conta = contaServico.salvar(contaEntradaDTO);
 
@@ -25,23 +25,24 @@ public class ContaController {
     }
     
     @PutMapping("/atualizar/{idConta}")
-    public ResponseEntity<?> atualizar(@PathVariable("idConta") Long idConta,@RequestBody ContaEntradaDTO contaEntradaDTO){
+    public ResponseEntity<ContaRetornoDTO> atualizar(@PathVariable("idConta") Long idConta,@RequestBody ContaEntradaDTO contaEntradaDTO){
 
         ContaRetornoDTO conta = contaServico.atualizar(contaEntradaDTO, idConta);
 
         return new ResponseEntity<>(conta, HttpStatus.OK);
     }
 
-    @DeleteMapping("/deletar/{idConta}")
-    public ResponseEntity<?> deletar(@PathVariable("idConta") Long idConta){
+    @DeleteMapping("/deletar")
+    public ResponseEntity<?> deletar(@RequestParam("numeroConta") Long numeroConta,
+                                     @RequestParam("numeroParcela") Long numeroParcela){
 
-        contaServico.deletar(idConta);
+        contaServico.deletar(numeroConta, numeroParcela);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/todas-as-contas")
-    public ResponseEntity<?> retornarTodasContas(){
+    public ResponseEntity<List<ContaRetornoDTO>> retornarTodasContas(){
 
         List<ContaRetornoDTO> contas = contaServico.retornarTodasContas();
 

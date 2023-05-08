@@ -1,8 +1,5 @@
 package com.msfinanceiro.modelo.dtos;
 
-import com.msfinanceiro.modelo.enums.EFormaPagamento;
-import com.msfinanceiro.modelo.enums.EStatus;
-import com.msfinanceiro.modelo.enums.ETipoConta;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,7 +17,9 @@ public class ContaRetornoDTO {
 
     private UUID idConta;
 
-    private ETipoConta tipoConta;
+    private Integer numeroConta;
+
+    private String tipoConta;
 
     private LojaRetornoDTO loja;
 
@@ -36,7 +35,7 @@ public class ContaRetornoDTO {
 
     private LocalDate dtVencimento;
 
-    private EFormaPagamento formaPagamento;
+    private String formaPagamento;
 
-    private EStatus status;
+    private String status;
 }
